@@ -9,7 +9,7 @@ import random
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 
-# Secure SSL Handling
+#  SSL Handling
 try:
     _create_unverified_https_context = ssl._create_unverified_context
 except AttributeError:
@@ -28,11 +28,11 @@ if not os.path.exists(file_path):
 with open(file_path, "r") as file:
     intents = json.load(file)
 
-# Create vectorizer and classifier
+# Creating vectorizer and classifier
 vectorizer = TfidfVectorizer()
 clf = LogisticRegression(random_state=0, max_iter=10000)
 
-# Prepare training data
+# Preparing training data
 tags, patterns = [], []
 for intent in intents:
     for pattern in intent['patterns']:
@@ -43,7 +43,7 @@ x = vectorizer.fit_transform(patterns)
 y = tags
 clf.fit(x, y)
 
-# Chatbot function
+# Chatbot 
 def chatbot(input_text):
     input_text = vectorizer.transform([input_text])
     tag = clf.predict(input_text)[0]
@@ -52,7 +52,7 @@ def chatbot(input_text):
             return random.choice(intent['responses'])
     return "Sorry, I didn't understand that."
 
-# Streamlit App
+# Streamlit 
 def main():
     st.title("Enhanced Chatbot using NLP")
     
@@ -73,7 +73,7 @@ def main():
                 response = chatbot(user_input)
                 timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 
-                # Save conversation
+                # Saving conversation
                 with open('chat_log.csv', 'a', newline='', encoding='utf-8') as csvfile:
                     csv_writer = csv.writer(csvfile)
                     csv_writer.writerow([user_input, response, timestamp])
