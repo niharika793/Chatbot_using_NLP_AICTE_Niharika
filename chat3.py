@@ -69,7 +69,7 @@ counter = 0
 
 def main():
     global counter
-    st.title("🧠 AI Chatbot with Speech Support")
+    st.title(" AI Chatbot")
     st.image("https://cdn-icons-png.flaticon.com/512/4712/4712027.png", width=80)
 
     # Create a sidebar menu with options
@@ -126,7 +126,7 @@ def main():
     
     # Conversation History Menu
     elif choice == "Conversation History":
-        st.header("📜 Conversation History")
+        st.header(" Conversation History")
         try:
             with open('chat_log.csv', 'r', encoding='utf-8') as csvfile:
                 csv_reader = csv.reader(csvfile)
